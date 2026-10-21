@@ -1,0 +1,31 @@
+#!/usr/bin/env php
+<?php
+
+use ClaudioDekker\LaravelGuardrails\Command;
+
+// A fatal error, such as running out of memory, would end the run with PHP's own exit code 255.
+register_shutdown_function(function () {
+    $error = error_get_last();
+
+    if ($error !== null && in_array($error['type'], [E_ERROR, E_CORE_ERROR, E_COMPILE_ERROR, E_USER_ERROR], true)) {
+        fwrite(STDERR, "Guardrails stopped: {$error['message']}\n");
+
+        exit(2);
+    }
+});
+
+$autoloaders = [
+    $GLOBALS['_composer_autoload_path'] ?? null,
+    __DIR__.'/../vendor/autoload.php',
+    __DIR__.'/../../../autoload.php',
+];
+
+foreach ($autoloaders as $autoloader) {
+    if ($autoloader !== null && is_file($autoloader)) {
+        require $autoloader;
+
+        break;
+    }
+}
+
+exit(Command::run((string) getcwd(), array_slice($argv, 1), STDOUT, STDERR));

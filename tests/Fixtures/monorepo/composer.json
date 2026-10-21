@@ -1,0 +1,22 @@
+{
+    "name": "acme/monorepo",
+    "type": "project",
+    "require": {
+        "php": "^8.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Acme\\Billing\\": "packages/billing/src/",
+            "Acme\\Crm\\": "packages/crm/src/"
+        },
+        "files": [
+            "packages/billing/src/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Acme\\Billing\\Tests\\": "packages/billing/tests/",
+            "Acme\\Crm\\Tests\\": "packages/crm/tests/"
+        }
+    }
+}

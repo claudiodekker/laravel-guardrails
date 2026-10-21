@@ -1,0 +1,23 @@
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Laravel Guardrails Checks
+|--------------------------------------------------------------------------
+|
+| The checks listed below are the guardrails enabled in this project.
+| A class name runs a check with its defaults, while `new Check()`,
+| `->only()` and `->allowing()` change where and how it applies.
+|
+| The pre-commit hook runs them on the lines that each commit changes.
+| In CI, run `vendor/bin/guardrails --base=origin/main` instead, or
+| use `--all` to check every file, including all existing code.
+|
+| Run `vendor/bin/guardrails install` to choose other checks.
+|
+| For more, see https://github.com/claudiodekker/laravel-guardrails
+|
+*/
+
+return [
+];

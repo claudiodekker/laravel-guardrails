@@ -1,0 +1,216 @@
+{
+    "name": "claudiodekker/laravel-guardrails",
+    "description": "Deterministic repository checks for Laravel apps, run by a pre-commit hook and in CI.",
+    "type": "composer-plugin",
+    "keywords": [
+        "laravel",
+        "lint",
+        "pre-commit"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Claudio Dekker",
+            "homepage": "https://github.com/claudiodekker"
+        }
+    ],
+    "require": {
+        "php": "^8.3",
+        "ext-dom": "*",
+        "composer-plugin-api": "^2.0",
+        "laravel/prompts": "^0.3.26",
+        "nikic/php-parser": "^5.0"
+    },
+    "require-dev": {
+        "composer/composer": "^2.0",
+        "laravel/pint": "^1.32",
+        "mockery/mockery": "^1.6",
+        "pestphp/pest": "^4.0 || ^5.0",
+        "phpstan/phpstan": "^2.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "ClaudioDekker\\LaravelGuardrails\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ClaudioDekker\\LaravelGuardrails\\Tests\\": "tests/"
+        }
+    },
+    "bin": [
+        "bin/guardrails"
+    ],
+    "extra": {
+        "class": "ClaudioDekker\\LaravelGuardrails\\Plugin",
+        "guardrails": {
+            "provides": {
+                "checks": [
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Text\\FilesWithinTokenBudget",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Text\\NoEmDashes",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Tests\\NoDocblocksInTests",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Tests\\NoFunctionsInTests",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Tests\\NoHttpInUnitTests",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Tests\\TestsInTestSuites",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Tests\\TestsInUnitOrFeature",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Structure\\OneClassPerFile",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Structure\\ConcernsHoldOnlyTraits",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Structure\\NoFinal",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Structure\\NoTestCodeInApp",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Structure\\NoReflection",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Enums\\SortedEnumCases",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Enums\\EnumCasesDocumentedAlike",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Safety\\NoDebugCalls",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Safety\\NoEval",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Safety\\NoUnserialize",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Safety\\NoWeakHashes",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Safety\\NoWeakRandomness",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Shape\\NoMatchOnCall",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Shape\\NoNewThenCall",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Shape\\OneClausePerLine",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Shape\\NoBlankLineOpeningBlocks",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Shape\\BlankLineAfterMultilineStatements",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\SlopedComments",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\SingleCaveatDocblocks",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\DocumentedDeclarations",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\PhpstanIgnoresNameIdentifier",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Config\\NoEnvOutsideConfig",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Config\\NoConfigDefaults",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Config\\DurationsAsProducts",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Config\\SortedConfigKeys",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Database\\NoFloatMoneyColumns"
+                ],
+                "presets": {
+                    "essentials": [
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Tests\\NoFunctionsInTests",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Tests\\TestsInTestSuites",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Structure\\OneClassPerFile",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Structure\\NoTestCodeInApp",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Safety\\NoDebugCalls",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Safety\\NoEval",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Safety\\NoUnserialize",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\PhpstanIgnoresNameIdentifier",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Config\\NoEnvOutsideConfig"
+                    ],
+                    "app": [
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Tests\\NoFunctionsInTests",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Tests\\NoHttpInUnitTests",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Tests\\TestsInTestSuites",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Structure\\OneClassPerFile",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Structure\\ConcernsHoldOnlyTraits",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Structure\\NoTestCodeInApp",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Safety\\NoDebugCalls",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Safety\\NoEval",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Safety\\NoUnserialize",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Safety\\NoWeakHashes",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Safety\\NoWeakRandomness",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\PhpstanIgnoresNameIdentifier",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Config\\NoEnvOutsideConfig",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Config\\NoConfigDefaults",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Config\\DurationsAsProducts",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Database\\NoFloatMoneyColumns"
+                    ],
+                    "package": [
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Tests\\NoFunctionsInTests",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Tests\\NoHttpInUnitTests",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Tests\\TestsInTestSuites",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Structure\\OneClassPerFile",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Structure\\ConcernsHoldOnlyTraits",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Structure\\NoFinal",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Structure\\NoTestCodeInApp",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Safety\\NoDebugCalls",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Safety\\NoEval",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Safety\\NoUnserialize",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\PhpstanIgnoresNameIdentifier",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Config\\NoEnvOutsideConfig",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Config\\NoConfigDefaults",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Config\\DurationsAsProducts"
+                    ],
+                    "laravel": [
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Text\\NoEmDashes",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Tests\\NoFunctionsInTests",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Tests\\TestsInTestSuites",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Structure\\OneClassPerFile",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Structure\\ConcernsHoldOnlyTraits",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Structure\\NoFinal",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Structure\\NoTestCodeInApp",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Safety\\NoDebugCalls",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Safety\\NoEval",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Safety\\NoUnserialize",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Shape\\NoBlankLineOpeningBlocks",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Shape\\BlankLineAfterMultilineStatements",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\SlopedComments",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\SingleCaveatDocblocks",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\DocumentedDeclarations",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\PhpstanIgnoresNameIdentifier",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Config\\NoEnvOutsideConfig"
+                    ],
+                    "opinionated": [
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Text\\FilesWithinTokenBudget",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Text\\NoEmDashes",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Tests\\NoDocblocksInTests",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Tests\\NoFunctionsInTests",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Tests\\NoHttpInUnitTests",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Tests\\TestsInTestSuites",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Tests\\TestsInUnitOrFeature",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Structure\\OneClassPerFile",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Structure\\ConcernsHoldOnlyTraits",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Structure\\NoFinal",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Structure\\NoTestCodeInApp",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Enums\\SortedEnumCases",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Enums\\EnumCasesDocumentedAlike",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Safety\\NoDebugCalls",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Safety\\NoEval",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Safety\\NoUnserialize",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Safety\\NoWeakHashes",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Safety\\NoWeakRandomness",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Shape\\NoMatchOnCall",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Shape\\NoNewThenCall",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Shape\\OneClausePerLine",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Shape\\NoBlankLineOpeningBlocks",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Shape\\BlankLineAfterMultilineStatements",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\SlopedComments",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\SingleCaveatDocblocks",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\DocumentedDeclarations",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\PhpstanIgnoresNameIdentifier",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Config\\NoEnvOutsideConfig",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Config\\NoConfigDefaults",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Config\\DurationsAsProducts",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Database\\NoFloatMoneyColumns"
+                    ]
+                },
+                "descriptions": {
+                    "essentials": "The checks that catch mistakes in any Laravel project, whatever its style.",
+                    "app": "The essentials plus the checks that suit an application you deploy.",
+                    "package": "The essentials plus the checks that suit a package other projects install.",
+                    "laravel": "Write the way laravel/framework does: documented code, sloped comments and spaced blocks.",
+                    "opinionated": "Every check, for a project that wants the whole rulebook."
+                }
+            }
+        }
+    },
+    "scripts": {
+        "post-install-cmd": "@link-binary",
+        "post-update-cmd": "@link-binary",
+        "link-binary": [
+            "@php -r \"is_link('vendor/bin/guardrails') || symlink('../../bin/guardrails', 'vendor/bin/guardrails');\"",
+            "ClaudioDekker\\LaravelGuardrails\\Plugin::install"
+        ],
+        "check": [
+            "@composer validate --strict",
+            "pint --test",
+            "phpstan analyse --no-progress --memory-limit=1G",
+            "pest",
+            "guardrails --all"
+        ]
+    },
+    "config": {
+        "allow-plugins": {
+            "claudiodekker/laravel-guardrails": true,
+            "pestphp/pest-plugin": true
+        },
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

@@ -1,0 +1,11 @@
+#!/bin/sh
+# Installed by claudiodekker/laravel-guardrails. Choose the checks with vendor/bin/guardrails install.
+
+cd {directory} || exit 1
+
+if [ ! -f vendor/bin/guardrails ]; then
+    echo "vendor/bin/guardrails is missing. Run composer install, then commit again." >&2
+    exit 1
+fi
+
+exec vendor/bin/guardrails --staged
