@@ -97,6 +97,10 @@ it('still reads a guardrails.php below the project root', function () {
     expect($file->lines(new NoTestCodeInApp))->toBe([3]);
 });
 
+it('says it reads every PHP file except the tests and guardrails.php', function () {
+    expect((new NoTestCodeInApp)->scope())->toBe('PHP outside tests and guardrails.php');
+});
+
 it('does not read a stub template', function () {
     $file = TestFile::of(Kind::TEXT, 'stubs/provider.stub.php', "<?php\n\nuse Tests\\Support\\FakeClock;\n");
 

@@ -3,6 +3,7 @@
 namespace ClaudioDekker\LaravelGuardrails\Checks\Php\Structure;
 
 use ClaudioDekker\LaravelGuardrails\Check;
+use ClaudioDekker\LaravelGuardrails\ConfigurationFile;
 use ClaudioDekker\LaravelGuardrails\File;
 use ClaudioDekker\LaravelGuardrails\Kind;
 use ClaudioDekker\LaravelGuardrails\Violation;
@@ -31,7 +32,7 @@ class NoTestCodeInApp extends Check
      */
     public function explanation(): string
     {
-        return 'Classes under a namespace autoload-dev maps, such as Tests\\, load only in development, because composer install --no-dev leaves them out, so application code that uses one fails in production. This flags any name from those namespaces, imported or fully qualified, in every PHP file outside the tests, reading the namespaces from composer.json and from the packages its path repositories hold, and Tests\\ when it maps none. Code under tests may use them freely.';
+        return 'Classes under a namespace autoload-dev maps, such as Tests\\, load only in development, because composer install --no-dev leaves them out, so application code that uses one fails in production. This flags any name from those namespaces, imported or fully qualified, in every PHP file outside the tests except guardrails.php, reading the namespaces from composer.json and from the packages its path repositories hold, and Tests\\ when it maps none. Code under tests may use them freely.';
     }
 
     /**
@@ -45,11 +46,27 @@ class NoTestCodeInApp extends Check
     }
 
     /**
+     * Get the one-line description of the files the check reads.
+     */
+    public function scope(): string
+    {
+        return parent::scope().' and guardrails.php';
+    }
+
+    /**
      * Get the failure message, naming the fix.
      */
     public function message(): string
     {
         return 'Keep the namespaces autoload-dev maps out of application code, because they are only autoloaded in development.';
+    }
+
+    /**
+     * Determine if the check reads the file, which is any PHP file but guardrails.php.
+     */
+    protected function reads(File $file): bool
+    {
+        return parent::reads($file) && $file->path !== ConfigurationFile::NAME;
     }
 
     /**
