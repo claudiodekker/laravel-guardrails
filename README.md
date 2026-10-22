@@ -45,7 +45,7 @@ Composer asks whether to allow the plugin the first time. Answer yes, or add it 
 Without a terminal, such as in a script, pass the selection as flags. The command then asks nothing: it writes `guardrails.php` and installs the pre-commit hook.
 
 ```bash
-vendor/bin/guardrails install --preset=essentials --preset=laravel --check='App\Guardrails\NoTableAccess'
+vendor/bin/guardrails install --preset=essentials --preset=laravel --check='Tests\Guardrails\NoTableAccess'
 ```
 
 The flags add to the checks `guardrails.php` already selects, and the command never removes or rewrites an entry it finds there, so a configured entry keeps its options, `only()`, `allowing()` and label. It prints the checks it added. To remove a check, turn it off in the picker or delete its entry from `guardrails.php`.
@@ -57,7 +57,7 @@ The flags add to the checks `guardrails.php` already selects, and the command ne
 ```php
 <?php
 
-use App\Guardrails\NoTableAccess;
+use Tests\Guardrails\NoTableAccess;
 use ClaudioDekker\LaravelGuardrails\Checks\Php\Safety\NoDebugCalls;
 use ClaudioDekker\LaravelGuardrails\Checks\Php\Safety\NoEval;
 use ClaudioDekker\LaravelGuardrails\Checks\Text\FilesWithinTokenBudget;
@@ -93,7 +93,7 @@ You can edit `guardrails.php` by hand. `guardrails install` keeps your configure
 
 ## Write your own rule
 
-A rule of your own is a class in your app that extends `Check` and returns the violations of a file: the places that break the rule. If all you need is to forbid some calls, extend `ForbiddenCalls` and list them. Add the class to `guardrails.php` like any other check, as `NoTableAccess::class` above. Test it with `Testing\TestFile`, which runs the check over a file you write in the test, and over a change to it. [Write a check](docs/writing-checks.md) walks through one, [Test a check](docs/testing-checks.md) tests it, and [Publish a check pack](docs/check-packs.md) shows how to offer checks from a package.
+A rule of your own is a class that extends `Check` and returns the violations of a file: the places that break the rule. `Check` comes from a dev dependency, so keep the class under a namespace `autoload-dev` maps, such as `Tests\Guardrails` in `tests/Guardrails`. If all you need is to forbid some calls, extend `ForbiddenCalls` and list them. Add the class to `guardrails.php` like any other check, as `NoTableAccess::class` above. Test it with `Testing\TestFile`, which runs the check over a file you write in the test, and over a change to it. [Write a check](docs/writing-checks.md) walks through one, [Test a check](docs/testing-checks.md) tests it, and [Publish a check pack](docs/check-packs.md) shows how to offer checks from a package.
 
 ## Run the checks
 

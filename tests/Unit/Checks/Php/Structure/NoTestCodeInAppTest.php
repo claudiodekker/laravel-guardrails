@@ -84,6 +84,23 @@ it('falls back to the Tests namespace for a file from no project', function () {
     expect($file->lines(new NoTestCodeInApp))->toBe([3]);
 });
 
+it('does not read guardrails.php, which only the guardrails command loads', function () {
+    $root = projectWith(['composer.json' => '{"autoload-dev": {"psr-4": {"Tests\\\\": "tests/"}}}']);
+    $file = TestFile::of(Kind::TEXT, 'guardrails.php', "<?php\n\nuse Tests\\Guardrails\\NoFoo;\n\nreturn [NoFoo::class];\n")->in($root);
+
+    expect($file->lines(new NoTestCodeInApp))->toBe([]);
+});
+
+it('still reads a guardrails.php below the project root', function () {
+    $file = TestFile::of(Kind::SOURCE, 'app/guardrails.php', "<?php\n\nuse Tests\\Guardrails\\NoFoo;\n");
+
+    expect($file->lines(new NoTestCodeInApp))->toBe([3]);
+});
+
+it('says it reads every PHP file except the tests and guardrails.php', function () {
+    expect((new NoTestCodeInApp)->scope())->toBe('PHP outside tests and guardrails.php');
+});
+
 it('does not read a stub template', function () {
     $file = TestFile::of(Kind::TEXT, 'stubs/provider.stub.php', "<?php\n\nuse Tests\\Support\\FakeClock;\n");
 

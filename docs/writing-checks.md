@@ -1,13 +1,13 @@
 # Write a check
 
-A check is a class that extends `ClaudioDekker\LaravelGuardrails\Check`. It gives a one-line description, a message that names the fix, and the violations of a file: the places that break the rule. You list it in `guardrails.php` like any built-in check.
+A check is a class that extends `ClaudioDekker\LaravelGuardrails\Check`. It gives a one-line description, a message that names the fix, and the violations of a file: the places that break the rule. You list it in `guardrails.php` like any built-in check. `Check` comes from a dev dependency, so keep your checks under a namespace `autoload-dev` maps, such as `Tests\Guardrails` in `tests/Guardrails`.
 
 This check refuses `date()` and `time()` in the source code and the config, so tests can freeze the clock:
 
 ```php
 <?php
 
-namespace App\Guardrails;
+namespace Tests\Guardrails;
 
 use ClaudioDekker\LaravelGuardrails\Check;
 use ClaudioDekker\LaravelGuardrails\File;
@@ -355,7 +355,7 @@ To offer the check in `guardrails install`, under your app's name, declare it in
     "extra": {
         "guardrails": {
             "provides": {
-                "checks": ["App\\Guardrails\\NoDateFunctions"]
+                "checks": ["Tests\\Guardrails\\NoDateFunctions"]
             }
         }
     }
