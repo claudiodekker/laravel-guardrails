@@ -32,7 +32,7 @@ it('passes a bare Laravel skeleton with every tracked file under every built-in 
 
     expect($result->errorOutput)->toBe('')
         ->and($result->successful())->toBeTrue()
-        ->and($result->output)->toBe("Guardrails passed: 31 checks over 64 files (every tracked file).\n");
+        ->and($result->output)->toBe("Guardrails passed: 32 checks over 64 files (every tracked file).\n");
 });
 
 it('passes a bare Laravel skeleton when it is staged', function () {
@@ -44,5 +44,5 @@ it('passes a bare Laravel skeleton when it is staged', function () {
 
     expect($result->errorOutput)->toBe('')
         ->and($result->successful())->toBeTrue()
-        ->and($result->output)->toBe("Guardrails passed: 31 checks over 64 files (staged changes).\n");
+        ->and($result->output)->toBe("Guardrails passed: 32 checks over 64 files (staged changes).\n");
 });

@@ -66,6 +66,7 @@ it('offers the app and package presets as the essentials plus the checks of that
             $namespace.'Shape\BlankLineAfterMultilineStatements',
             $namespace.'Comments\SlopedComments',
             $namespace.'Comments\SingleCaveatDocblocks',
+            $namespace.'Comments\ClassDocblocksHoldOnlyTags',
             $namespace.'Comments\DocumentedDeclarations',
         ])
         ->and(array_values(array_intersect($essentials, $catalog->preset('app')->checks)))->toBe($essentials)

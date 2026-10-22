@@ -72,6 +72,7 @@
                     "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Shape\\BlankLineAfterMultilineStatements",
                     "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\SlopedComments",
                     "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\SingleCaveatDocblocks",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\ClassDocblocksHoldOnlyTags",
                     "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\DocumentedDeclarations",
                     "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\PhpstanIgnoresNameIdentifier",
                     "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Config\\NoEnvOutsideConfig",
@@ -141,6 +142,7 @@
                         "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Shape\\BlankLineAfterMultilineStatements",
                         "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\SlopedComments",
                         "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\SingleCaveatDocblocks",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\ClassDocblocksHoldOnlyTags",
                         "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\DocumentedDeclarations",
                         "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\PhpstanIgnoresNameIdentifier",
                         "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Config\\NoEnvOutsideConfig"
@@ -171,6 +173,7 @@
                         "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Shape\\BlankLineAfterMultilineStatements",
                         "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\SlopedComments",
                         "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\SingleCaveatDocblocks",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\ClassDocblocksHoldOnlyTags",
                         "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\DocumentedDeclarations",
                         "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\PhpstanIgnoresNameIdentifier",
                         "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Config\\NoEnvOutsideConfig",

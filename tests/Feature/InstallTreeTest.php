@@ -96,8 +96,8 @@ it('adds the checks of a preset chosen with p to the tree, and keeps the tree wh
 
     Prompt::assertStrippedOutputContains('› ● essentials (claudiodekker/laravel-guardrails), 9 checks');
     Prompt::assertStrippedOutputContains('Enter adds the checks of the preset, esc keeps the tree as it is.');
-    expect(anyFrame(fn (string $frame) => str_contains($frame, 'Php › Safety') && str_contains($frame, '0 of 33 on')))->toBeTrue()
-        ->and(anyFrame(fn (string $frame) => str_contains($frame, 'Php › Safety') && str_contains($frame, '9 of 33 on')))->toBeTrue();
+    expect(anyFrame(fn (string $frame) => str_contains($frame, 'Php › Safety') && str_contains($frame, '0 of 34 on')))->toBeTrue()
+        ->and(anyFrame(fn (string $frame) => str_contains($frame, 'Php › Safety') && str_contains($frame, '9 of 34 on')))->toBeTrue();
 });
 
 it('scrolls the tree when the open groups do not fit', function () {
