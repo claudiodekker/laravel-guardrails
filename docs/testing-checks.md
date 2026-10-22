@@ -5,7 +5,7 @@
 `TestFile::of()` takes the kind, the path and the contents, and `reports()` returns what a run would report: the line and the message of each violation, with a `null` line for a violation of the whole file. The list holds nothing else, so a field added to `Violation` later cannot break your tests.
 
 ```php
-use App\Guardrails\NoDateFunctions;
+use Tests\Guardrails\NoDateFunctions;
 use ClaudioDekker\LaravelGuardrails\Kind;
 use ClaudioDekker\LaravelGuardrails\Testing\TestFile;
 

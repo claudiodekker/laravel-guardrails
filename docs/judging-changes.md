@@ -5,7 +5,7 @@ Some rules are about the change rather than the file it leaves. A committed migr
 ```php
 <?php
 
-namespace App\Guardrails;
+namespace Tests\Guardrails;
 
 use ClaudioDekker\LaravelGuardrails\Change;
 use ClaudioDekker\LaravelGuardrails\Check;
