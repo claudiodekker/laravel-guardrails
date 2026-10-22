@@ -8,8 +8,6 @@ use InvalidArgumentException;
 use RuntimeException;
 
 /**
- * A project holds the regular files under its folder, by their paths from the project root.
- *
  * @api
  *
  * @final

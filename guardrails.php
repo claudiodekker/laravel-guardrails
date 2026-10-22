@@ -1,5 +1,6 @@
 <?php
 
+use ClaudioDekker\LaravelGuardrails\Checks\Php\Comments\ClassDocblocksHoldOnlyTags;
 use ClaudioDekker\LaravelGuardrails\Checks\Php\Comments\DocumentedDeclarations;
 use ClaudioDekker\LaravelGuardrails\Checks\Php\Comments\PhpstanIgnoresNameIdentifier;
 use ClaudioDekker\LaravelGuardrails\Checks\Php\Comments\SingleCaveatDocblocks;
@@ -49,6 +50,7 @@ return [
     BlankLineAfterMultilineStatements::class,
     SlopedComments::class,
     SingleCaveatDocblocks::class,
+    (new ClassDocblocksHoldOnlyTags)->allowing(['src/Kind.php' => 'The note that a case can be added in a minor release warns every caller who matches on the kind, and fits nowhere else.']),
     DocumentedDeclarations::class,
     PhpstanIgnoresNameIdentifier::class,
     NoEnvOutsideConfig::class,
