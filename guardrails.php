@@ -15,6 +15,7 @@ use ClaudioDekker\LaravelGuardrails\Checks\Php\Safety\NoWeakHashes;
 use ClaudioDekker\LaravelGuardrails\Checks\Php\Safety\NoWeakRandomness;
 use ClaudioDekker\LaravelGuardrails\Checks\Php\Shape\BlankLineAfterMultilineStatements;
 use ClaudioDekker\LaravelGuardrails\Checks\Php\Shape\NoBlankLineOpeningBlocks;
+use ClaudioDekker\LaravelGuardrails\Checks\Php\Shape\NoEmptyBraces;
 use ClaudioDekker\LaravelGuardrails\Checks\Php\Shape\NoMatchOnCall;
 use ClaudioDekker\LaravelGuardrails\Checks\Php\Shape\NoNewThenCall;
 use ClaudioDekker\LaravelGuardrails\Checks\Php\Shape\OneClausePerLine;
@@ -47,6 +48,7 @@ return [
     NoNewThenCall::class,
     OneClausePerLine::class,
     NoBlankLineOpeningBlocks::class,
+    NoEmptyBraces::class,
     BlankLineAfterMultilineStatements::class,
     SlopedComments::class,
     SingleCaveatDocblocks::class,

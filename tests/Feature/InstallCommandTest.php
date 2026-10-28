@@ -15,7 +15,7 @@ it('writes the preset the developer picks', function () {
     Prompt::assertStrippedOutputContains('essentials (claudiodekker/laravel-guardrails), 9 checks');
     Prompt::assertStrippedOutputContains('› ▸ ◻ Text             0 of 2 on');
     Prompt::assertStrippedOutputContains('  ▸ ▣ Php › Safety     3 of 5 on');
-    Prompt::assertStrippedOutputContains('9 of 34 on');
+    Prompt::assertStrippedOutputContains('9 of 35 on');
     Prompt::assertStrippedOutputContains('Turned on:');
     Prompt::assertStrippedOutputContains('Write the selection to guardrails.php?');
     Prompt::assertStrippedOutputContains('Selected 9 checks in guardrails.php.');
@@ -160,10 +160,10 @@ it('writes a preset and extra checks from the flags without asking, and installs
 
         expect($result->exitCode)->toBe(0)
             ->and($result->errorOutput)->toBe('')
-            ->and($result->output)->toStartWith("Added 19 checks:\n  ")
-            ->and($result->output)->toEndWith("Selected 19 checks in guardrails.php.\nInstalled the pre-commit hook at {$repository->hookPath()}.\n")
+            ->and($result->output)->toStartWith("Added 20 checks:\n  ")
+            ->and($result->output)->toEndWith("Selected 20 checks in guardrails.php.\nInstalled the pre-commit hook at {$repository->hookPath()}.\n")
             ->and(guardrails($repository->path))->toBe(array_values(array_intersect(builtIn('opinionated'), [...builtIn('laravel'), 'ClaudioDekker\LaravelGuardrails\Checks\Php\Enums\SortedEnumCases'])))
-            ->and($repository->runGuardrails('--all')->output)->toBe("Guardrails passed: 19 checks over 0 files (every tracked file).\n");
+            ->and($repository->runGuardrails('--all')->output)->toBe("Guardrails passed: 20 checks over 0 files (every tracked file).\n");
     });
 });
 
