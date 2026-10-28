@@ -305,7 +305,7 @@ it('passes an unchanged Laravel skeleton against its default branch and with not
         ->runGuardrails(...$arguments));
 
     expect($result->successful())->toBeTrue()
-        ->and($result->output)->toBe("Guardrails passed: 33 checks over 0 files ({$scope}).\n");
+        ->and($result->output)->toBe("Guardrails passed: 34 checks over 0 files ({$scope}).\n");
 })->with([
     'against the default branch' => [[], 'origin/HEAD..HEAD'],
     'staged' => [['--staged'], 'staged changes'],

@@ -12,7 +12,7 @@ it('passes a monorepo whose root composer.json autoloads its packages, with ever
 
     expect($result->errorOutput)->toBe('')
         ->and($result->successful())->toBeTrue()
-        ->and($result->output)->toBe("Guardrails passed: 33 checks over 12 files (every tracked file).\n");
+        ->and($result->output)->toBe("Guardrails passed: 34 checks over 12 files (every tracked file).\n");
 });
 
 it('refuses a change to a monorepo that breaks a rule in each kind of code, by the kind of the package folder each file sits in', function () {
