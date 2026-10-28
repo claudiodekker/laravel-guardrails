@@ -15,7 +15,8 @@ it('lists the built-in checks by group with the ones guardrails.php selects mark
         ->and($result['output'])->toMatch('/^    \[ \] NoEmDashes +every file +No em dash in any file\.$/m')
         ->and($result['output'])->toMatch('/^    \[ \] TestsInTestSuites +\*Test\.php in tests and other files, outside Fixtures folders +Every test sits in a folder/m')
         ->and($result['output'])->toContain("\nPresets\n  essentials (claudiodekker/laravel-guardrails)\n    The checks that catch mistakes in any Laravel project, whatever its style.\n    NoFunctionsInTests, TestsInTestSuites, OneClassPerFile, ")
-        ->and($result['output'])->toContain("\n  opinionated (claudiodekker/laravel-guardrails)\n    Every check, for a project that wants the whole rulebook.\n    FilesWithinTokenBudget, NoEmDashes, NoDocblocksInTests, ")
+        ->and($result['output'])->toContain("\n  opinionated (claudiodekker/laravel-guardrails)\n    Every check but the strict ones, for a project that wants the whole rulebook.\n    FilesWithinTokenBudget, NoEmDashes, NoDocblocksInTests, ")
+        ->and($result['output'])->toContain("\n  strict (claudiodekker/laravel-guardrails)\n    Opt-in checks for package code under src: every class tagged @api or @internal, and no mixed types.\n    ClassesTaggedApiOrInternal, NoMixedTypes\n")
         ->and($result['output'])->toEndWith("\n");
 });
 
