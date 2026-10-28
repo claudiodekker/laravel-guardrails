@@ -63,6 +63,7 @@ it('offers the app and package presets as the essentials plus the checks of that
             $namespace.'Structure\ConcernsHoldOnlyTraits',
             $namespace.'Structure\NoFinal',
             $namespace.'Shape\NoBlankLineOpeningBlocks',
+            $namespace.'Shape\NoEmptyBraces',
             $namespace.'Shape\BlankLineAfterMultilineStatements',
             $namespace.'Comments\SlopedComments',
             $namespace.'Comments\SingleCaveatDocblocks',
