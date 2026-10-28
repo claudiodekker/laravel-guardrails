@@ -18,6 +18,8 @@ use ClaudioDekker\LaravelGuardrails\Checks\Php\Shape\NoBlankLineOpeningBlocks;
 use ClaudioDekker\LaravelGuardrails\Checks\Php\Shape\NoEmptyBraces;
 use ClaudioDekker\LaravelGuardrails\Checks\Php\Shape\NoMatchOnCall;
 use ClaudioDekker\LaravelGuardrails\Checks\Php\Shape\NoNewThenCall;
+use ClaudioDekker\LaravelGuardrails\Checks\Php\Shape\NoParenthesesAroundCallReceivers;
+use ClaudioDekker\LaravelGuardrails\Checks\Php\Shape\NoParenthesisedReceiverInConditions;
 use ClaudioDekker\LaravelGuardrails\Checks\Php\Shape\OneClausePerLine;
 use ClaudioDekker\LaravelGuardrails\Checks\Php\Structure\ConcernsHoldOnlyTraits;
 use ClaudioDekker\LaravelGuardrails\Checks\Php\Structure\NoFinal;
@@ -46,6 +48,8 @@ return [
     NoWeakRandomness::class,
     NoMatchOnCall::class,
     NoNewThenCall::class,
+    NoParenthesesAroundCallReceivers::class,
+    NoParenthesisedReceiverInConditions::class,
     OneClausePerLine::class,
     NoBlankLineOpeningBlocks::class,
     NoEmptyBraces::class,
