@@ -54,6 +54,208 @@ it('passes precise types, a mixed docblock and a class named like mixed', functi
     expect($file->lines(new NoMixedTypes))->toBe([]);
 });
 
+it('passes mixed where the docblock names a template type', function (string $source) {
+    $file = TestFile::of(Kind::SOURCE, 'src/Recorder.php', "<?php\n\n".$source);
+
+    expect($file->lines(new NoMixedTypes))->toBe([]);
+})->with([
+    'a template of the method on the return' => [<<<'PHP'
+        class Floor
+        {
+            /**
+             * @template TResult
+             *
+             * @param  Closure(): TResult  $work
+             * @return TResult
+             */
+            public function hold(Closure $work): mixed
+            {
+                return $work();
+            }
+        }
+        PHP],
+    'a template of the class on the return' => [<<<'PHP'
+        /**
+         * @template TValue
+         */
+        class Box
+        {
+            /**
+             * @return TValue
+             */
+            public function get(): mixed
+            {
+                return null;
+            }
+        }
+        PHP],
+    'a template of the interface on a parameter' => [<<<'PHP'
+        /**
+         * @phpstan-template TValue
+         */
+        interface Sink
+        {
+            /**
+             * @param  TValue  $value
+             */
+            public function put(mixed $value): void;
+        }
+        PHP],
+    'a template of the trait declared for psalm' => [<<<'PHP'
+        /**
+         * @psalm-template TValue
+         */
+        trait Holds
+        {
+            /**
+             * @return TValue
+             */
+            public function value(): mixed
+            {
+                return null;
+            }
+        }
+        PHP],
+    'a template on a promoted property' => [<<<'PHP'
+        /**
+         * @template TValue
+         */
+        class Box
+        {
+            /**
+             * @param  TValue  $value
+             */
+            public function __construct(
+                protected mixed $value,
+            ) {
+                //
+            }
+        }
+        PHP],
+    'a template on a property' => [<<<'PHP'
+        /**
+         * @template TValue
+         */
+        class Box
+        {
+            /**
+             * @var TValue
+             */
+            protected mixed $value;
+        }
+        PHP],
+    'a template or null' => [<<<'PHP'
+        /**
+         * @template TValue
+         */
+        class Box
+        {
+            /**
+             * @return TValue|null
+             */
+            public function find(): mixed
+            {
+                return null;
+            }
+        }
+        PHP],
+    'a union of two templates' => [<<<'PHP'
+        /**
+         * @template TFirst
+         * @template TSecond
+         */
+        class Pair
+        {
+            /**
+             * @return TFirst|TSecond
+             */
+            public function pick(): mixed
+            {
+                return null;
+            }
+        }
+        PHP],
+]);
+
+it('fails mixed where the docblock does not name a template type', function (string $source, int $line) {
+    $file = TestFile::of(Kind::SOURCE, 'src/Recorder.php', "<?php\n\n".$source);
+
+    expect($file->lines(new NoMixedTypes))->toBe([$line]);
+})->with([
+    'a docblock that only narrows the type' => [<<<'PHP'
+        class Recorder
+        {
+            /**
+             * @return string|null
+             */
+            public function name(): mixed
+            {
+                return null;
+            }
+        }
+        PHP, 8],
+    'a template that holds a list' => [<<<'PHP'
+        /**
+         * @template TValue
+         */
+        class Box
+        {
+            /**
+             * @return list<TValue>
+             */
+            public function all(): mixed
+            {
+                return [];
+            }
+        }
+        PHP, 11],
+    'a template of another method' => [<<<'PHP'
+        class Floor
+        {
+            /**
+             * @template TResult
+             *
+             * @return TResult
+             */
+            public function hold(): mixed
+            {
+                return null;
+            }
+
+            /**
+             * @return TResult
+             */
+            public function release(): mixed
+            {
+                return null;
+            }
+        }
+        PHP, 18],
+    'a parameter the template docblock does not describe' => [<<<'PHP'
+        class Floor
+        {
+            /**
+             * @template TResult
+             *
+             * @param  TResult  $other
+             */
+            public function hold(mixed $work, mixed $other): void
+            {
+                //
+            }
+        }
+        PHP, 10],
+    'no docblock' => [<<<'PHP'
+        class Recorder
+        {
+            public function name(): mixed
+            {
+                return null;
+            }
+        }
+        PHP, 5],
+]);
+
 it('names the fix', function () {
     $file = TestFile::of(Kind::SOURCE, 'src/Recorder.php', "<?php\n\nfunction decode(): mixed\n{\n    return null;\n}\n");
 
