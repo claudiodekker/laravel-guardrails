@@ -18,6 +18,7 @@ it('offers the built-in checks and presets first, even in a project with no comp
             'claudiodekker/laravel-guardrails:package',
             'claudiodekker/laravel-guardrails:laravel',
             'claudiodekker/laravel-guardrails:opinionated',
+            'claudiodekker/laravel-guardrails:strict',
         ]);
 });
 
@@ -29,11 +30,25 @@ it('offers every built-in check in a built-in preset, but two that the developer
         'ClaudioDekker\LaravelGuardrails\Checks\Php\Config\SortedConfigKeys',
     ];
 
-    expect($catalog->preset('opinionated')->checks)->toBe(array_values(array_diff($built, $inNoPreset)))
+    expect($catalog->preset('opinionated')->checks)->toBe(array_values(array_diff($built, $inNoPreset, $catalog->preset('strict')->checks)))
         ->and($catalog->preset('essentials')->checks)->not->toBe($built);
 
     foreach ($built as $class) {
         expect(class_exists($class))->toBeTrue("{$class} is declared under provides but does not exist");
+    }
+});
+
+it('keeps the checks for package code in the strict preset alone, so a project only runs them when it opts in', function () {
+    $catalog = Catalog::discover(project());
+    $strict = [
+        'ClaudioDekker\LaravelGuardrails\Checks\Php\Package\ClassesTaggedApiOrInternal',
+        'ClaudioDekker\LaravelGuardrails\Checks\Php\Package\NoMixedTypes',
+    ];
+
+    expect($catalog->preset('strict')->checks)->toBe($strict);
+
+    foreach (['essentials', 'app', 'package', 'laravel', 'opinionated'] as $preset) {
+        expect(array_intersect($strict, $catalog->preset($preset)->checks))->toBe([], "the {$preset} preset holds a strict check");
     }
 });
 
@@ -142,7 +157,7 @@ it('refuses a preset that does not exist, naming the presets in full', function 
     $catalog = Catalog::discover(project([], [installedPack('acme/pack', [], ['safe' => []])]));
 
     expect(fn () => $catalog->preset('relaxed'))
-        ->toThrow(InvalidArgumentException::class, 'Preset relaxed does not exist. The presets are: claudiodekker/laravel-guardrails:essentials, claudiodekker/laravel-guardrails:app, claudiodekker/laravel-guardrails:package, claudiodekker/laravel-guardrails:laravel, claudiodekker/laravel-guardrails:opinionated, acme/pack:safe.');
+        ->toThrow(InvalidArgumentException::class, 'Preset relaxed does not exist. The presets are: claudiodekker/laravel-guardrails:essentials, claudiodekker/laravel-guardrails:app, claudiodekker/laravel-guardrails:package, claudiodekker/laravel-guardrails:laravel, claudiodekker/laravel-guardrails:opinionated, claudiodekker/laravel-guardrails:strict, acme/pack:safe.');
 });
 
 it('refuses a preset name two packs use, unless it is named in full', function () {

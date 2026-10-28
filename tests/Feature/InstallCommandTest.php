@@ -15,7 +15,7 @@ it('writes the preset the developer picks', function () {
     Prompt::assertStrippedOutputContains('essentials (claudiodekker/laravel-guardrails), 9 checks');
     Prompt::assertStrippedOutputContains('› ▸ ◻ Text             0 of 2 on');
     Prompt::assertStrippedOutputContains('  ▸ ▣ Php › Safety     3 of 5 on');
-    Prompt::assertStrippedOutputContains('9 of 35 on');
+    Prompt::assertStrippedOutputContains('9 of 37 on');
     Prompt::assertStrippedOutputContains('Turned on:');
     Prompt::assertStrippedOutputContains('Write the selection to guardrails.php?');
     Prompt::assertStrippedOutputContains('Selected 9 checks in guardrails.php.');

@@ -20,6 +20,7 @@ it('groups the built-in checks by their namespace under Checks, in the order the
         'Php › Comments',
         'Php › Config',
         'Php › Database',
+        'Php › Package',
     ])
         ->and($groups[0]->checks)->toBe([
             'ClaudioDekker\LaravelGuardrails\Checks\Text\FilesWithinTokenBudget',

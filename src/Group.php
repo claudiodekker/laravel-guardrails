@@ -25,6 +25,7 @@ class Group
         'Php › Comments' => 'These checks read comments and docblocks. They require a docblock on every method, function and property, keep docblocks and inline comments short, and make each PHPStan ignore name the error it hides.',
         'Php › Config' => 'These checks keep configuration in the config files and easy to read. They keep env() inside config files, every default in the config file rather than at the call site, durations written as products, and keys in alphabetical order.',
         'Php › Database' => 'These checks read the migrations. They catch column types that lose data, such as money stored as a float.',
+        'Php › Package' => 'These checks hold package code to a stricter standard, in src or the folders they are given. They make every class say whether it is @api or @internal, and keep mixed out of declared types. Only the strict preset turns them on.',
     ];
 
     /**

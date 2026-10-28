@@ -80,7 +80,9 @@
                     "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Config\\NoConfigDefaults",
                     "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Config\\DurationsAsProducts",
                     "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Config\\SortedConfigKeys",
-                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Database\\NoFloatMoneyColumns"
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Database\\NoFloatMoneyColumns",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Package\\ClassesTaggedApiOrInternal",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Package\\NoMixedTypes"
                 ],
                 "presets": {
                     "essentials": [
@@ -183,6 +185,10 @@
                         "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Config\\NoConfigDefaults",
                         "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Config\\DurationsAsProducts",
                         "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Database\\NoFloatMoneyColumns"
+                    ],
+                    "strict": [
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Package\\ClassesTaggedApiOrInternal",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Package\\NoMixedTypes"
                     ]
                 },
                 "descriptions": {
@@ -190,7 +196,8 @@
                     "app": "The essentials plus the checks that suit an application you deploy.",
                     "package": "The essentials plus the checks that suit a package other projects install.",
                     "laravel": "Write the way laravel/framework does: documented code, sloped comments and spaced blocks.",
-                    "opinionated": "Every check, for a project that wants the whole rulebook."
+                    "opinionated": "Every check but the strict ones, for a project that wants the whole rulebook.",
+                    "strict": "Opt-in checks for package code under src: every class tagged @api or @internal, and no mixed types."
                 }
             }
         }

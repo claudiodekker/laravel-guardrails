@@ -38,7 +38,7 @@ Composer asks whether to allow the plugin the first time. Answer yes, or add it 
 
 ## Choose the checks
 
-`vendor/bin/guardrails install` lets you pick checks one by one or start from presets, and asks before it writes `guardrails.php`. Tick several presets to combine them, or pass `--preset` more than once. The package ships presets for apps, packages and Laravel's own style, and any installed package can add its own. `guardrails.php` stores the class names, not the preset's name, so a preset that grows later does not change what your app runs.
+`vendor/bin/guardrails install` lets you pick checks one by one or start from presets, and asks before it writes `guardrails.php`. Tick several presets to combine them, or pass `--preset` more than once. The package ships presets for apps, packages and Laravel's own style, and any installed package can add its own. The `strict` preset is opt-in: no other preset includes it, and the picker never ticks it for you. `guardrails.php` stores the class names, not the preset's name, so a preset that grows later does not change what your app runs.
 
 `vendor/bin/guardrails list` prints every check you can choose and every preset. Add `--details` to print what each check flags and the options it takes.
 
@@ -79,6 +79,13 @@ A check you don't configure stays `::class`. To give a check options, create it 
 ```php
 (new NoNamespaces(['Acme\Crm']))->only('packages/billing/src')->as('NoCrmInBilling'),
 (new NoNamespaces(['Acme\Billing']))->only('packages/crm/src')->as('NoBillingInCrm'),
+```
+
+The `strict` preset holds two checks for package code: `ClassesTaggedApiOrInternal` makes every class say whether it is `@api` or `@internal`, and `NoMixedTypes` keeps `mixed` out of parameter, return and property types. Both cover `src` unless you give them other folders, so a monorepo can point them at its packages, and an app at one folder it treats as a package:
+
+```php
+new ClassesTaggedApiOrInternal(['packages/*/src']),
+new NoMixedTypes(['app/Billing']),
 ```
 
 A PHP file that does not parse fails every run that checks it, whatever checks you selected. To keep files that are broken on purpose, allow them on `NoSyntaxErrors`:
