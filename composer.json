@@ -172,7 +172,6 @@
                         "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Safety\\NoUnserialize",
                         "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Safety\\NoWeakHashes",
                         "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Safety\\NoWeakRandomness",
-                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Shape\\NoMatchOnCall",
                         "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Shape\\NoParenthesesAroundCallReceivers",
                         "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Shape\\NoParenthesisedReceiverInConditions",
                         "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Shape\\NoNewThenCall",

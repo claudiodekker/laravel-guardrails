@@ -16,7 +16,6 @@ use ClaudioDekker\LaravelGuardrails\Checks\Php\Safety\NoWeakRandomness;
 use ClaudioDekker\LaravelGuardrails\Checks\Php\Shape\BlankLineAfterMultilineStatements;
 use ClaudioDekker\LaravelGuardrails\Checks\Php\Shape\NoBlankLineOpeningBlocks;
 use ClaudioDekker\LaravelGuardrails\Checks\Php\Shape\NoEmptyBraces;
-use ClaudioDekker\LaravelGuardrails\Checks\Php\Shape\NoMatchOnCall;
 use ClaudioDekker\LaravelGuardrails\Checks\Php\Shape\NoNewThenCall;
 use ClaudioDekker\LaravelGuardrails\Checks\Php\Shape\NoParenthesesAroundCallReceivers;
 use ClaudioDekker\LaravelGuardrails\Checks\Php\Shape\NoParenthesisedReceiverInConditions;
@@ -46,7 +45,6 @@ return [
     NoUnserialize::class,
     NoWeakHashes::class,
     NoWeakRandomness::class,
-    NoMatchOnCall::class,
     NoNewThenCall::class,
     NoParenthesesAroundCallReceivers::class,
     NoParenthesisedReceiverInConditions::class,

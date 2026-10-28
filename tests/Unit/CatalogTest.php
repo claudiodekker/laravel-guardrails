@@ -22,12 +22,13 @@ it('offers the built-in checks and presets first, even in a project with no comp
         ]);
 });
 
-it('offers every built-in check in a built-in preset, but two that the developer picks by hand', function () {
+it('offers every built-in check in a built-in preset, but two that the developer picks by hand and the deprecated NoMatchOnCall', function () {
     $catalog = Catalog::discover(project());
     $built = $catalog->checks();
     $inNoPreset = [
         'ClaudioDekker\LaravelGuardrails\Checks\Php\Structure\NoReflection',
         'ClaudioDekker\LaravelGuardrails\Checks\Php\Config\SortedConfigKeys',
+        'ClaudioDekker\LaravelGuardrails\Checks\Php\Shape\NoMatchOnCall',
     ];
 
     expect($catalog->preset('opinionated')->checks)->toBe(array_values(array_diff($built, $inNoPreset, $catalog->preset('strict')->checks)))

@@ -10,6 +10,8 @@ use PhpParser\Node\Expr\Match_;
 
 /**
  * @api
+ *
+ * @deprecated Use NoParenthesesAroundCallReceivers and NoParenthesisedReceiverInConditions instead. This check is removed in 2.0.
  */
 class NoMatchOnCall extends Check
 {
