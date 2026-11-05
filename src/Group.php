@@ -16,7 +16,7 @@ class Group
      * The explanations of the built-in groups, by name.
      */
     protected const EXPLANATIONS = [
-        'Text' => 'These checks read every file in the repository, whatever its language. They keep each file short enough for an agent to read whole, and free of em dashes, and refuse a PHPStan baseline that grows. Only the floor preset turns the baseline check on.',
+        'Text' => 'These checks read every file in the repository, whatever its language. They keep each file short enough for an agent to read whole, and free of em dashes, and refuse a PHPStan baseline that grows or a PHPStan level that drops. Only the floor preset turns those checks on.',
         'Php › Tests' => 'These checks read the test suite. They make sure every test runs, keep every test in a Unit or Feature folder, keep HTTP requests out of unit tests, keep test files free of named functions and of docblocks that repeat a test\'s name, and refuse a test that is skipped. Only the floor preset turns the skip check on.',
         'Php › Structure' => 'These checks govern where PHP code lives and how its classes are declared. They keep one class to a file, only traits in Concerns folders, test code and reflection out of the application, and every class open to extension.',
         'Php › Enums' => 'These checks read enum declarations. They keep the cases of an enum in alphabetical order, and documented all alike.',

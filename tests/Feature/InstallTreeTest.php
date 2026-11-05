@@ -26,7 +26,7 @@ it('opens a group, jumps from a check back to its group, and closes it', functio
     ]);
 
     Prompt::assertStrippedOutputContains('Space ticks a preset.');
-    Prompt::assertStrippedOutputContains('› ▾ ◻ Text             0 of 3 on');
+    Prompt::assertStrippedOutputContains('› ▾ ◻ Text             0 of 4 on');
     Prompt::assertStrippedOutputContains('›     ◻ NoEmDashes');
     Prompt::assertStrippedOutputContains('NoEmDashes  every file');
     Prompt::assertStrippedOutputContains('No em dash in any file.');
@@ -51,8 +51,8 @@ it('turns a check on and writes it, in catalog order', function () {
     ]);
 
     Prompt::assertStrippedOutputContains('›     ◼ NoEmDashes');
-    Prompt::assertStrippedOutputContains('  ▾ ▣ Text             1 of 3 on');
-    Prompt::assertStrippedOutputContains('  ▾ ▣ Text             2 of 3 on');
+    Prompt::assertStrippedOutputContains('  ▾ ▣ Text             1 of 4 on');
+    Prompt::assertStrippedOutputContains('  ▾ ▣ Text             2 of 4 on');
     Prompt::assertStrippedOutputContains('FilesWithinTokenBudget  every file');
     Prompt::assertStrippedOutputContains('Every file stays under 5000 tokens, so an agent can read it whole.');
 });
@@ -97,8 +97,8 @@ it('adds the checks of a preset chosen with p to the tree, and keeps the tree wh
 
     Prompt::assertStrippedOutputContains('› ● essentials (claudiodekker/laravel-guardrails), 9 checks');
     Prompt::assertStrippedOutputContains('Enter adds the checks of the preset, esc keeps the tree as it is.');
-    expect(anyFrame(fn (string $frame) => str_contains($frame, 'Php › Safety') && str_contains($frame, '0 of 42 on')))->toBeTrue()
-        ->and(anyFrame(fn (string $frame) => str_contains($frame, 'Php › Safety') && str_contains($frame, '9 of 42 on')))->toBeTrue();
+    expect(anyFrame(fn (string $frame) => str_contains($frame, 'Php › Safety') && str_contains($frame, '0 of 43 on')))->toBeTrue()
+        ->and(anyFrame(fn (string $frame) => str_contains($frame, 'Php › Safety') && str_contains($frame, '9 of 43 on')))->toBeTrue();
 });
 
 it('scrolls the tree when the open groups do not fit', function () {
@@ -225,7 +225,7 @@ it('marks a configured check and describes it as configured', function () {
 
     install($directory, [Key::ENTER, Key::RIGHT, Key::DOWN, Key::ENTER]);
 
-    Prompt::assertStrippedOutputContains('› ▾ ▣ Text             2 of 3 on');
+    Prompt::assertStrippedOutputContains('› ▾ ▣ Text             2 of 4 on');
     Prompt::assertStrippedOutputContains('›     ◼ FilesWithinTokenBudget  configured');
     Prompt::assertStrippedOutputContains('      ◼ NoEmDashes');
     Prompt::assertStrippedOutputContains('Every file stays under 8000 tokens, so an agent can read it whole.');
@@ -252,7 +252,7 @@ it('marks a check configured through calls chained on its instance', function ()
 
     expect(file_get_contents($directory.'/guardrails.php'))->toBe($before);
 
-    Prompt::assertStrippedOutputContains('› ▾ ▣ Text             2 of 3 on');
+    Prompt::assertStrippedOutputContains('› ▾ ▣ Text             2 of 4 on');
     Prompt::assertStrippedOutputContains('›     ◼ FilesWithinTokenBudget  configured');
     Prompt::assertStrippedOutputContains('FilesWithinTokenBudget  every file but data files, under app');
     Prompt::assertStrippedOutputContains('Every file stays under 8000 tokens, so an agent can read it whole.');

@@ -26,6 +26,7 @@ it('groups the built-in checks by their namespace under Checks, in the order the
             'ClaudioDekker\LaravelGuardrails\Checks\Text\FilesWithinTokenBudget',
             'ClaudioDekker\LaravelGuardrails\Checks\Text\NoEmDashes',
             'ClaudioDekker\LaravelGuardrails\Checks\Text\PhpstanBaselineNeverGrows',
+            'ClaudioDekker\LaravelGuardrails\Checks\Text\PhpstanLevelNeverLowers',
         ]);
 });
 

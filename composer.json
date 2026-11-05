@@ -49,6 +49,7 @@
                     "ClaudioDekker\\LaravelGuardrails\\Checks\\Text\\FilesWithinTokenBudget",
                     "ClaudioDekker\\LaravelGuardrails\\Checks\\Text\\NoEmDashes",
                     "ClaudioDekker\\LaravelGuardrails\\Checks\\Text\\PhpstanBaselineNeverGrows",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Text\\PhpstanLevelNeverLowers",
                     "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Tests\\NoDocblocksInTests",
                     "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Tests\\NoFunctionsInTests",
                     "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Tests\\NoHttpInUnitTests",
@@ -199,7 +200,8 @@
                     "floor": [
                         "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Tests\\NoSkippedTests",
                         "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\NoAnalyserIgnores",
-                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Text\\PhpstanBaselineNeverGrows"
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Text\\PhpstanBaselineNeverGrows",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Text\\PhpstanLevelNeverLowers"
                     ]
                 },
                 "descriptions": {
