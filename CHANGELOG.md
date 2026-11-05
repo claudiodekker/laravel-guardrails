@@ -2,7 +2,13 @@
 
 ## 1.4.0
 
-- Add the opt-in `floor` preset, with six checks that refuse a change which lowers the quality bar instead of fixing the code. `NoSkippedTests` flags `markTestSkipped()`, `markTestIncomplete()` and Pest's `skip()` and `todo()`. `NoAnalyserIgnores` flags `@phpstan-ignore` and `@psalm-suppress` comments. `PhpstanBaselineNeverGrows` fails a PHPStan baseline that ignores more errors than before, and `PhpstanLevelNeverLowers` a lower or removed PHPStan level. `NoPhpUnitExclusions` flags an `<exclude>` in `phpunit.xml`, and `NoRemovedAssertions` flags a test that has fewer assertions than before. No other preset includes them, and the installer never pre-ticks `floor`. The `opinionated` description now says it leaves out the strict and floor checks. ([#12](https://github.com/claudiodekker/laravel-guardrails/pull/12))
+- Add the opt-in `floor` preset, with six new checks that refuse a change which lowers the quality bar instead of fixing the code. No other preset includes them, and the installer never pre-ticks `floor`. Apps that already have a `guardrails.php` turn them on by adding them there. The `opinionated` description now says it leaves out the strict and floor checks. ([#12](https://github.com/claudiodekker/laravel-guardrails/pull/12))
+- Add the `NoSkippedTests` check. It flags `markTestSkipped()`, `markTestIncomplete()`, Pest's `todo()` function, and a `skip()` or `todo()` chained onto a Pest `it()`, `test()` or `describe()`. A collection's `skip()` in a test passes. ([#12](https://github.com/claudiodekker/laravel-guardrails/pull/12))
+- Add the `NoAnalyserIgnores` check. It flags every `@phpstan-ignore` and `@psalm-suppress` comment. It complements `PhpstanIgnoresNameIdentifier`, which asks an ignore to name its error, so both may flag one line. ([#12](https://github.com/claudiodekker/laravel-guardrails/pull/12))
+- Add the `PhpstanBaselineNeverGrows` check. It fails a change that makes a PHPStan baseline, in NEON or PHP, ignore more errors than before, and a new baseline that ignores any. A baseline that shrinks passes. ([#12](https://github.com/claudiodekker/laravel-guardrails/pull/12))
+- Add the `PhpstanLevelNeverLowers` check. It flags the level line when a change lowers the level in `phpstan.neon`, and the file when a change removes the level or deletes the file. `max` counts as higher than every number. ([#12](https://github.com/claudiodekker/laravel-guardrails/pull/12))
+- Add the `NoPhpUnitExclusions` check. It flags each group, directory or file an `<exclude>` in `phpunit.xml` lists, and an `<exclude>` inside a test suite. ([#12](https://github.com/claudiodekker/laravel-guardrails/pull/12))
+- Add the `NoRemovedAssertions` check. It flags a PHPUnit or Pest test that has fewer assertions than before. A new, renamed or deleted test passes. ([#12](https://github.com/claudiodekker/laravel-guardrails/pull/12))
 
 ## 1.3.0
 
