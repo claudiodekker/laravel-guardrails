@@ -59,6 +59,7 @@ it('keeps the checks that refuse a lowered quality bar in the floor preset alone
     $namespace = 'ClaudioDekker\LaravelGuardrails\Checks\\';
     $floor = [
         $namespace.'Php\Tests\NoSkippedTests',
+        $namespace.'Php\Comments\NoAnalyserIgnores',
     ];
 
     expect($catalog->preset('floor')->checks)->toBe($floor);

@@ -17,7 +17,7 @@ it('lists the built-in checks by group with the ones guardrails.php selects mark
         ->and($result['output'])->toContain("\nPresets\n  essentials (claudiodekker/laravel-guardrails)\n    The checks that catch mistakes in any Laravel project, whatever its style.\n    NoFunctionsInTests, TestsInTestSuites, OneClassPerFile, ")
         ->and($result['output'])->toContain("\n  opinionated (claudiodekker/laravel-guardrails)\n    Every check but the strict and floor ones, for a project that wants the whole rulebook.\n    FilesWithinTokenBudget, NoEmDashes, NoDocblocksInTests, ")
         ->and($result['output'])->toContain("\n  strict (claudiodekker/laravel-guardrails)\n    Opt-in checks for package code under src: every class tagged @api or @internal, and no mixed types.\n    ClassesTaggedApiOrInternal, NoMixedTypes\n")
-        ->and($result['output'])->toContain("\n  floor (claudiodekker/laravel-guardrails)\n    Opt-in checks that refuse changes which lower the quality bar: skipped tests, silenced analysers, a growing baseline, a lower PHPStan level, excluded tests and removed assertions.\n    NoSkippedTests\n")
+        ->and($result['output'])->toContain("\n  floor (claudiodekker/laravel-guardrails)\n    Opt-in checks that refuse changes which lower the quality bar: skipped tests, silenced analysers, a growing baseline, a lower PHPStan level, excluded tests and removed assertions.\n    NoSkippedTests, NoAnalyserIgnores\n")
         ->and($result['output'])->toEndWith("\n");
 });
 

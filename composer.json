@@ -79,6 +79,7 @@
                     "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\ClassDocblocksHoldOnlyTags",
                     "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\DocumentedDeclarations",
                     "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\PhpstanIgnoresNameIdentifier",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\NoAnalyserIgnores",
                     "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Config\\NoEnvOutsideConfig",
                     "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Config\\NoConfigDefaults",
                     "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Config\\DurationsAsProducts",
@@ -195,7 +196,8 @@
                         "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Package\\NoMixedTypes"
                     ],
                     "floor": [
-                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Tests\\NoSkippedTests"
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Tests\\NoSkippedTests",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\NoAnalyserIgnores"
                     ]
                 },
                 "descriptions": {

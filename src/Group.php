@@ -22,7 +22,7 @@ class Group
         'Php › Enums' => 'These checks read enum declarations. They keep the cases of an enum in alphabetical order, and documented all alike.',
         'Php › Safety' => 'These checks flag PHP functions that open a security hole, or leak debug output, in production. Each failure names the safe function to use instead.',
         'Php › Shape' => 'These checks govern the layout of statements within a file. They keep blank lines and line breaks where a reader expects them, and split dense one-liners into named steps.',
-        'Php › Comments' => 'These checks read comments and docblocks. They require a docblock on every method, function and property, keep docblocks and inline comments short, and make each PHPStan ignore name the error it hides.',
+        'Php › Comments' => 'These checks read comments and docblocks. They require a docblock on every method, function and property, keep docblocks and inline comments short, and make each PHPStan ignore name the error it hides. Only the floor preset turns on the check that refuses an ignore.',
         'Php › Config' => 'These checks keep configuration in the config files and easy to read. They keep env() inside config files, every default in the config file rather than at the call site, durations written as products, and keys in alphabetical order.',
         'Php › Database' => 'These checks read the migrations. They catch column types that lose data, such as money stored as a float.',
         'Php › Package' => 'These checks hold package code to a stricter standard, in src or the folders they are given. They make every class say whether it is @api or @internal, and keep mixed out of declared types. Only the strict preset turns them on.',
