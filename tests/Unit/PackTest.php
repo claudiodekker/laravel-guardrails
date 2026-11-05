@@ -25,6 +25,7 @@ it('groups the built-in checks by their namespace under Checks, in the order the
         ->and($groups[0]->checks)->toBe([
             'ClaudioDekker\LaravelGuardrails\Checks\Text\FilesWithinTokenBudget',
             'ClaudioDekker\LaravelGuardrails\Checks\Text\NoEmDashes',
+            'ClaudioDekker\LaravelGuardrails\Checks\Text\PhpstanBaselineNeverGrows',
         ]);
 });
 
