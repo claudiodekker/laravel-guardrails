@@ -63,6 +63,7 @@ it('keeps the checks that refuse a lowered quality bar in the floor preset alone
         $namespace.'Text\PhpstanBaselineNeverGrows',
         $namespace.'Text\PhpstanLevelNeverLowers',
         $namespace.'Text\NoPhpUnitExclusions',
+        $namespace.'Php\Tests\NoRemovedAssertions',
     ];
 
     expect($catalog->preset('floor')->checks)->toBe($floor);

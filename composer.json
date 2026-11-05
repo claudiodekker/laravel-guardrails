@@ -54,6 +54,7 @@
                     "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Tests\\NoDocblocksInTests",
                     "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Tests\\NoFunctionsInTests",
                     "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Tests\\NoHttpInUnitTests",
+                    "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Tests\\NoRemovedAssertions",
                     "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Tests\\NoSkippedTests",
                     "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Tests\\TestsInTestSuites",
                     "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Tests\\TestsInUnitOrFeature",
@@ -203,7 +204,8 @@
                         "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Comments\\NoAnalyserIgnores",
                         "ClaudioDekker\\LaravelGuardrails\\Checks\\Text\\PhpstanBaselineNeverGrows",
                         "ClaudioDekker\\LaravelGuardrails\\Checks\\Text\\PhpstanLevelNeverLowers",
-                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Text\\NoPhpUnitExclusions"
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Text\\NoPhpUnitExclusions",
+                        "ClaudioDekker\\LaravelGuardrails\\Checks\\Php\\Tests\\NoRemovedAssertions"
                     ]
                 },
                 "descriptions": {
