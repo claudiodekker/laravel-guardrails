@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- Add the opt-in `floor` preset, with six checks that refuse a change which lowers the quality bar instead of fixing the code. `NoSkippedTests` flags `markTestSkipped()`, `markTestIncomplete()` and Pest's `skip()` and `todo()`. `NoAnalyserIgnores` flags `@phpstan-ignore` and `@psalm-suppress` comments. `PhpstanBaselineNeverGrows` fails a PHPStan baseline that ignores more errors than before, and `PhpstanLevelNeverLowers` a lower or removed PHPStan level. `NoPhpUnitExclusions` flags an `<exclude>` in `phpunit.xml`, and `NoRemovedAssertions` flags a test that has fewer assertions than before. No other preset includes them, and the installer never pre-ticks `floor`. The `opinionated` description now says it leaves out the strict and floor checks.
+- Add the opt-in `floor` preset, with six checks that refuse a change which lowers the quality bar instead of fixing the code. `NoSkippedTests` flags `markTestSkipped()`, `markTestIncomplete()` and Pest's `skip()` and `todo()`. `NoAnalyserIgnores` flags `@phpstan-ignore` and `@psalm-suppress` comments. `PhpstanBaselineNeverGrows` fails a PHPStan baseline that ignores more errors than before, and `PhpstanLevelNeverLowers` a lower or removed PHPStan level. `NoPhpUnitExclusions` flags an `<exclude>` in `phpunit.xml`, and `NoRemovedAssertions` flags a test that has fewer assertions than before. No other preset includes them, and the installer never pre-ticks `floor`. The `opinionated` description now says it leaves out the strict and floor checks. ([#12](https://github.com/claudiodekker/laravel-guardrails/pull/12))
 
 ## 1.3.0
 
