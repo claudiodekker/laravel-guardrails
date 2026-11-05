@@ -38,7 +38,7 @@ Composer asks whether to allow the plugin the first time. Answer yes, or add it 
 
 ## Choose the checks
 
-`vendor/bin/guardrails install` lets you pick checks one by one or start from presets, and asks before it writes `guardrails.php`. Tick several presets to combine them, or pass `--preset` more than once. The package ships presets for apps, packages and Laravel's own style, and any installed package can add its own. The `strict` preset is opt-in: no other preset includes it, and the picker never ticks it for you. `guardrails.php` stores the class names, not the preset's name, so a preset that grows later does not change what your app runs.
+`vendor/bin/guardrails install` lets you pick checks one by one or start from presets, and asks before it writes `guardrails.php`. Tick several presets to combine them, or pass `--preset` more than once. The package ships presets for apps, packages and Laravel's own style, and any installed package can add its own. The `strict` and `floor` presets are opt-in: no other preset includes them, and the picker never ticks them for you. `guardrails.php` stores the class names, not the preset's name, so a preset that grows later does not change what your app runs.
 
 `vendor/bin/guardrails list` prints every check you can choose and every preset. Add `--details` to print what each check flags and the options it takes.
 
@@ -87,6 +87,8 @@ The `strict` preset holds two checks for package code: `ClassesTaggedApiOrIntern
 new ClassesTaggedApiOrInternal(['packages/*/src']),
 new NoMixedTypes(['app/Billing']),
 ```
+
+The `floor` preset holds six checks that refuse the moves which get a change to green without fixing anything. `NoSkippedTests` refuses a skipped test or a todo, `NoAnalyserIgnores` an `@phpstan-ignore` or `@psalm-suppress`, `PhpstanBaselineNeverGrows` a baseline that ignores more errors than before, `PhpstanLevelNeverLowers` a lower PHPStan level, `NoPhpUnitExclusions` an `<exclude>` in `phpunit.xml`, and `NoRemovedAssertions` a test that keeps its name and loses assertions. Each one fails only the change that makes things worse, so an old baseline or an old skipped test stays. A run over every file with `--all` has no earlier version to compare with, so it flags every baseline that ignores an error. No check refuses a deleted test file, because deleting the test of behavior that is gone is fine, and `allowing()` cannot name a file that no longer exists.
 
 A PHP file that does not parse fails every run that checks it, whatever checks you selected. To keep files that are broken on purpose, allow them on `NoSyntaxErrors`:
 

@@ -16,13 +16,13 @@ class Group
      * The explanations of the built-in groups, by name.
      */
     protected const EXPLANATIONS = [
-        'Text' => 'These checks read every file in the repository, whatever its language. They keep each file short enough for an agent to read whole, and free of em dashes.',
-        'Php › Tests' => 'These checks read the test suite. They make sure every test runs, keep every test in a Unit or Feature folder, keep HTTP requests out of unit tests, and keep test files free of named functions and of docblocks that repeat a test\'s name.',
+        'Text' => 'These checks read every file in the repository, whatever its language. They keep each file short enough for an agent to read whole, and free of em dashes. The floor preset adds three for PHPStan and PHPUnit.',
+        'Php › Tests' => 'These checks read the test suite. They make sure every test runs, keep every test in a Unit or Feature folder, keep HTTP requests out of unit tests, keep test files free of named functions and of docblocks that repeat a test\'s name, and refuse a test that is skipped or loses assertions. Only the floor preset turns those checks on.',
         'Php › Structure' => 'These checks govern where PHP code lives and how its classes are declared. They keep one class to a file, only traits in Concerns folders, test code and reflection out of the application, and every class open to extension.',
         'Php › Enums' => 'These checks read enum declarations. They keep the cases of an enum in alphabetical order, and documented all alike.',
         'Php › Safety' => 'These checks flag PHP functions that open a security hole, or leak debug output, in production. Each failure names the safe function to use instead.',
         'Php › Shape' => 'These checks govern the layout of statements within a file. They keep blank lines and line breaks where a reader expects them, and split dense one-liners into named steps.',
-        'Php › Comments' => 'These checks read comments and docblocks. They require a docblock on every method, function and property, keep docblocks and inline comments short, and make each PHPStan ignore name the error it hides.',
+        'Php › Comments' => 'These checks read comments and docblocks. They require a docblock on every method, function and property, keep docblocks and inline comments short, and make each PHPStan ignore name the error it hides. Only the floor preset turns on the check that refuses an ignore.',
         'Php › Config' => 'These checks keep configuration in the config files and easy to read. They keep env() inside config files, every default in the config file rather than at the call site, durations written as products, and keys in alphabetical order.',
         'Php › Database' => 'These checks read the migrations. They catch column types that lose data, such as money stored as a float.',
         'Php › Package' => 'These checks hold package code to a stricter standard, in src or the folders they are given. They make every class say whether it is @api or @internal, and keep mixed out of declared types. Only the strict preset turns them on.',

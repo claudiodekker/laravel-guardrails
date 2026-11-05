@@ -13,9 +13,9 @@ it('writes the preset the developer picks', function () {
         ->and(guardrails($directory))->toBe(builtIn('essentials'));
 
     Prompt::assertStrippedOutputContains('essentials (claudiodekker/laravel-guardrails), 9 checks');
-    Prompt::assertStrippedOutputContains('› ▸ ◻ Text             0 of 2 on');
+    Prompt::assertStrippedOutputContains('› ▸ ◻ Text             0 of 5 on');
     Prompt::assertStrippedOutputContains('  ▸ ▣ Php › Safety     3 of 5 on');
-    Prompt::assertStrippedOutputContains('9 of 39 on');
+    Prompt::assertStrippedOutputContains('9 of 45 on');
     Prompt::assertStrippedOutputContains('Turned on:');
     Prompt::assertStrippedOutputContains('Write the selection to guardrails.php?');
     Prompt::assertStrippedOutputContains('Selected 9 checks in guardrails.php.');
@@ -32,7 +32,7 @@ it('starts from the current selection on a rerun, and leaves guardrails.php alon
         ->and(file_get_contents($directory.'/guardrails.php'))->toBe($before);
 
     Prompt::assertStrippedOutputContains('Your current selection, 1 checks');
-    Prompt::assertStrippedOutputContains('› ▾ ▣ Text             1 of 2 on');
+    Prompt::assertStrippedOutputContains('› ▾ ▣ Text             1 of 5 on');
     Prompt::assertStrippedOutputContains('The selection is unchanged.');
     Prompt::assertStrippedOutputContains('Not inside a git repository, so no pre-commit hook was installed.');
     Prompt::assertStrippedOutputDoesntContain('Write the selection to guardrails.php?');
