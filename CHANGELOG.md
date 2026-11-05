@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Add the opt-in `floor` preset, with six checks that refuse a change which lowers the quality bar instead of fixing the code. `NoSkippedTests` flags `markTestSkipped()`, `markTestIncomplete()` and Pest's `skip()` and `todo()`. `NoAnalyserIgnores` flags `@phpstan-ignore` and `@psalm-suppress` comments. `PhpstanBaselineNeverGrows` fails a PHPStan baseline that ignores more errors than before, and `PhpstanLevelNeverLowers` a lower or removed PHPStan level. `NoPhpUnitExclusions` flags an `<exclude>` in `phpunit.xml`, and `NoRemovedAssertions` flags a test that has fewer assertions than before. No other preset includes them, and the installer never pre-ticks `floor`. The `opinionated` description now says it leaves out the strict and floor checks.
+
 ## 1.3.0
 
 - Add two checks for parentheses around a value that a method is called on. `NoParenthesesAroundCallReceivers` flags parentheses around a call that change nothing, such as `($user->team())->role()`. `NoParenthesisedReceiverInConditions` flags a `match`, `switch`, `if`, `elseif` or `while` that opens with a doubled parenthesis, such as `match ((new Foo)->bar())`, and asks you to name the value in a variable first. `(new Carbon)->addDay()` and grouping such as `if (($a && $b) || $c)` pass. The `opinionated` preset offers both, and apps that already have a `guardrails.php` turn them on by adding them there. ([#11](https://github.com/claudiodekker/laravel-guardrails/pull/11))
