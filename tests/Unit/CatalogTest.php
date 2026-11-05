@@ -19,6 +19,7 @@ it('offers the built-in checks and presets first, even in a project with no comp
             'claudiodekker/laravel-guardrails:laravel',
             'claudiodekker/laravel-guardrails:opinionated',
             'claudiodekker/laravel-guardrails:strict',
+            'claudiodekker/laravel-guardrails:floor',
         ]);
 });
 
@@ -31,7 +32,7 @@ it('offers every built-in check in a built-in preset, but two that the developer
         'ClaudioDekker\LaravelGuardrails\Checks\Php\Shape\NoMatchOnCall',
     ];
 
-    expect($catalog->preset('opinionated')->checks)->toBe(array_values(array_diff($built, $inNoPreset, $catalog->preset('strict')->checks)))
+    expect($catalog->preset('opinionated')->checks)->toBe(array_values(array_diff($built, $inNoPreset, $catalog->preset('strict')->checks, $catalog->preset('floor')->checks)))
         ->and($catalog->preset('essentials')->checks)->not->toBe($built);
 
     foreach ($built as $class) {
@@ -50,6 +51,20 @@ it('keeps the checks for package code in the strict preset alone, so a project o
 
     foreach (['essentials', 'app', 'package', 'laravel', 'opinionated'] as $preset) {
         expect(array_intersect($strict, $catalog->preset($preset)->checks))->toBe([], "the {$preset} preset holds a strict check");
+    }
+});
+
+it('keeps the checks that refuse a lowered quality bar in the floor preset alone, so a project only runs them when it opts in', function () {
+    $catalog = Catalog::discover(project());
+    $namespace = 'ClaudioDekker\LaravelGuardrails\Checks\\';
+    $floor = [
+        $namespace.'Php\Tests\NoSkippedTests',
+    ];
+
+    expect($catalog->preset('floor')->checks)->toBe($floor);
+
+    foreach (['essentials', 'app', 'package', 'laravel', 'opinionated', 'strict'] as $preset) {
+        expect(array_intersect($floor, $catalog->preset($preset)->checks))->toBe([], "the {$preset} preset holds a floor check");
     }
 });
 
@@ -158,7 +173,7 @@ it('refuses a preset that does not exist, naming the presets in full', function 
     $catalog = Catalog::discover(project([], [installedPack('acme/pack', [], ['safe' => []])]));
 
     expect(fn () => $catalog->preset('relaxed'))
-        ->toThrow(InvalidArgumentException::class, 'Preset relaxed does not exist. The presets are: claudiodekker/laravel-guardrails:essentials, claudiodekker/laravel-guardrails:app, claudiodekker/laravel-guardrails:package, claudiodekker/laravel-guardrails:laravel, claudiodekker/laravel-guardrails:opinionated, claudiodekker/laravel-guardrails:strict, acme/pack:safe.');
+        ->toThrow(InvalidArgumentException::class, 'Preset relaxed does not exist. The presets are: claudiodekker/laravel-guardrails:essentials, claudiodekker/laravel-guardrails:app, claudiodekker/laravel-guardrails:package, claudiodekker/laravel-guardrails:laravel, claudiodekker/laravel-guardrails:opinionated, claudiodekker/laravel-guardrails:strict, claudiodekker/laravel-guardrails:floor, acme/pack:safe.');
 });
 
 it('refuses a preset name two packs use, unless it is named in full', function () {

@@ -17,7 +17,7 @@ class Group
      */
     protected const EXPLANATIONS = [
         'Text' => 'These checks read every file in the repository, whatever its language. They keep each file short enough for an agent to read whole, and free of em dashes.',
-        'Php › Tests' => 'These checks read the test suite. They make sure every test runs, keep every test in a Unit or Feature folder, keep HTTP requests out of unit tests, and keep test files free of named functions and of docblocks that repeat a test\'s name.',
+        'Php › Tests' => 'These checks read the test suite. They make sure every test runs, keep every test in a Unit or Feature folder, keep HTTP requests out of unit tests, keep test files free of named functions and of docblocks that repeat a test\'s name, and refuse a test that is skipped. Only the floor preset turns the skip check on.',
         'Php › Structure' => 'These checks govern where PHP code lives and how its classes are declared. They keep one class to a file, only traits in Concerns folders, test code and reflection out of the application, and every class open to extension.',
         'Php › Enums' => 'These checks read enum declarations. They keep the cases of an enum in alphabetical order, and documented all alike.',
         'Php › Safety' => 'These checks flag PHP functions that open a security hole, or leak debug output, in production. Each failure names the safe function to use instead.',
