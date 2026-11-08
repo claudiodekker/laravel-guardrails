@@ -38,7 +38,7 @@ class OneClausePerLine extends Check
      */
     public function explanation(): string
     {
-        return 'A condition of three or more clauses on one line is hard to read, and a change to one clause rewrites the whole line in a diff. This flags each clause of such a condition that does not start its own line with its && or || first, the first clause after an opening parenthesis included. Two clauses may share a line, and a group in parentheses counts as one clause, though a group of three or more is checked on its own.';
+        return 'A condition of three or more clauses on one line is hard to read, and a change to one clause rewrites the whole line in a diff. This flags each clause after the first of such a condition that does not start its own line with its && or || first. The first clause has no operator, so it may stay on the line of the opening parenthesis, as in `if ($a` followed by `&& $b` and `&& $c` on lines of their own. Two clauses may share a line, and a group in parentheses counts as one clause, though a group of three or more is checked on its own.';
     }
 
     /**
@@ -115,7 +115,7 @@ class OneClausePerLine extends Check
     }
 
     /**
-     * Get the lines of the clauses that do not start their own line, operator first.
+     * Get the lines of the clauses after the first that do not start their own line, operator first.
      *
      * @param  list<Expr>  $clauses
      * @param  array<Token>  $tokens
@@ -125,8 +125,8 @@ class OneClausePerLine extends Check
     {
         $lines = [];
 
-        foreach ($clauses as $index => $clause) {
-            if (! $this->isPlaced($clause, $index, $tokens)) {
+        foreach (array_slice($clauses, 1) as $clause) {
+            if (! $this->isPlaced($clause, $tokens)) {
                 $lines[] = $tokens[$this->firstToken($clause, $tokens)]->line;
             }
         }
@@ -139,16 +139,11 @@ class OneClausePerLine extends Check
      *
      * @param  array<Token>  $tokens
      */
-    protected function isPlaced(Expr $clause, int $index, array $tokens): bool
+    protected function isPlaced(Expr $clause, array $tokens): bool
     {
-        $first = $this->firstToken($clause, $tokens);
+        $operator = $this->previous($tokens, $this->firstToken($clause, $tokens));
 
-        if ($index > 0) {
-            return $this->startsLine($this->previous($tokens, $first), $tokens);
-        }
-
-        return $tokens[$this->previous($tokens, $first)]->text !== '('
-            || $this->startsLine($first, $tokens);
+        return $this->startsLine($operator, $tokens);
     }
 
     /**
