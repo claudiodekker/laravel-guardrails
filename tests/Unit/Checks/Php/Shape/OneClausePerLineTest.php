@@ -21,13 +21,13 @@ it('fails a group of three clauses on one line inside a condition', function () 
     expect($file->lines(new OneClausePerLine))->toBe([3]);
 });
 
-it('fails a first clause that shares a line with the opening parenthesis', function () {
+it('fails a second clause that shares a line with the first one after the opening parenthesis', function () {
     $file = TestFile::of(Kind::SOURCE, 'app/Policies/OrderPolicy.php', <<<'PHP'
         <?php
 
-        if ($a
-            && $b
-            && $c) {
+        if ($a && $b
+            && $c
+        ) {
             allow();
         }
         PHP);
@@ -66,6 +66,28 @@ it('passes each clause on its own line with the operator first', function () {
         return $a
             && $b
             && $c;
+        PHP);
+
+    expect($file->lines(new OneClausePerLine))->toBe([]);
+});
+
+it('passes a first clause that stays on the line of the opening parenthesis', function () {
+    $file = TestFile::of(Kind::SOURCE, 'app/Policies/OrderPolicy.php', <<<'PHP'
+        <?php
+
+        if (is_string($cast)
+            && is_a($cast, BackedEnum::class, true)
+            && is_a($cast, HasLabel::class, true)
+        ) {
+            allow();
+        }
+
+        while ($a
+            || $b
+            || $c
+        ) {
+            wait();
+        }
         PHP);
 
     expect($file->lines(new OneClausePerLine))->toBe([]);
