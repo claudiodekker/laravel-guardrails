@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.1
+
+- `OneClausePerLine` lets the first clause of a condition stay on the line of the opening parenthesis, as in `if ($a` followed by `&& $b` and `&& $c` on lines of their own. The clauses after the first still start their own line with their operator. Code that passed before still passes. ([#14](https://github.com/claudiodekker/laravel-guardrails/pull/14))
+
 ## 1.4.0
 
 - Add the opt-in `floor` preset, with six new checks that refuse a change which lowers the quality bar instead of fixing the code. No other preset includes them, and the installer never pre-ticks `floor`. Apps that already have a `guardrails.php` turn them on by adding them there. The `opinionated` description now says it leaves out the strict and floor checks. ([#12](https://github.com/claudiodekker/laravel-guardrails/pull/12))
